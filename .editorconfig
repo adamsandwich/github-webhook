@@ -5,7 +5,7 @@ indent_style = space
 
 # 缩进的大小 
 # tab_width: 设置整数用于指定替代tab的列数。默认值就是indent_size的值，一般无需指定。
-indent_size = 2
+indent_size = 4
 
 # 定义换行符 [lf | cr | crlf]
 end_of_line = lf
@@ -14,7 +14,7 @@ end_of_line = lf
 charset = utf-8
 
 # 是否除去换行行首的任意空白字符
-trim_trailing_whitespace = false
+trim_trailing_whitespace = true
 
 # 文件是否以一个空白行结尾 [true | false]
-insert_final_newline = true
+insert_final_newline = false
