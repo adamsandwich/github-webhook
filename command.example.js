@@ -51,5 +51,5 @@ module.exports = function () {
 
     // transfer file
     console.log(`${chalk.green('[exec]')} build ==> dist`);
-    shell.cp('-r', `${REPO}/public/`, `${DIST}/`);
+    shell.cp('-r', `${REPO}/public/*`, `${DIST}/`);
 }
