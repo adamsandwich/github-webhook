@@ -9,7 +9,7 @@ const URL = process.env.URL;
 
 http.createServer(function (request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json' });
-    response.end();
+    response.end('{}');
     if (request.headers['x-github-event'] && request.headers['x-github-event'] === 'push') {
         console.log(`${chalk.green('[github-event]')} push`);
 
@@ -18,7 +18,7 @@ http.createServer(function (request, response) {
             if (SIGNATURE == sign(SECRET, chunk.toString()) &&
                 URL == request.url) {
                 console.log(`${chalk.green('[verify]')} successful`);
-                command();
+                new Promise().then(() => command());
             } else {
                 console.log(`${chalk.red('[verify]')} failed`);
             }
