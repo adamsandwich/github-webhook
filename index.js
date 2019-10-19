@@ -18,7 +18,7 @@ http.createServer(function (request, response) {
             if (SIGNATURE == sign(SECRET, chunk.toString()) &&
                 URL == request.url) {
                 console.log(`${chalk.green('[verify]')} successful`);
-                new Promise().then(() => command());
+                Promise.resolve().then(() => command());
             } else {
                 console.log(`${chalk.red('[verify]')} failed`);
             }
