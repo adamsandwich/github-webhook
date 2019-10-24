@@ -3,6 +3,7 @@ const dotenv = require('dotenv').config();
 const crypto = require('crypto');
 const chalk = require('chalk');
 const command = require('./command');
+const log = require('fancy-log');
 
 const SECRET = process.env.SECRET;
 const URL = process.env.URL;
@@ -11,16 +12,16 @@ http.createServer(function (request, response) {
     response.writeHead(200, { 'Content-Type': 'application/json' });
     response.end('{}');
     if (request.headers['x-github-event'] && request.headers['x-github-event'] === 'push') {
-        console.log(`${chalk.green('[github-event]')} push`);
+        log(`${chalk.green('[github-event]')} push`);
 
         request.on('data', function (chunk) {
             const SIGNATURE = request.headers['x-hub-signature'];
             if (SIGNATURE == sign(SECRET, chunk.toString()) &&
                 URL == request.url) {
-                console.log(`${chalk.green('[verify]')} successful`);
+                log(`${chalk.green('[verify]')} successful`);
                 Promise.resolve().then(() => command());
             } else {
-                console.log(`${chalk.red('[verify]')} failed`);
+                log(`${chalk.red('[verify]')} failed`);
             }
         });
     }
